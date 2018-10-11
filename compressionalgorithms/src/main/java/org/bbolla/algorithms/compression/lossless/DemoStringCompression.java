@@ -101,7 +101,7 @@ public class DemoStringCompression {
     private static void logCompressionStats(String input, String compressed) {
         Integer inputSize = input.getBytes().length;
         Integer compressedSize = compressed.getBytes().length;
-        double ratio = ((double) inputSize) / ((double) compressedSize);
+        double ratio = (double) inputSize / compressedSize;
         log.info("Compression ratio : {}", ratio);
     }
 
