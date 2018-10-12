@@ -11,6 +11,7 @@ public interface CompressionTechnique {
     /**
      * Compress plain text.
      * @param uncompressed
+     * @param writer
      * @return
      */
     void compress(Reader uncompressed, Writer writer);
@@ -18,6 +19,7 @@ public interface CompressionTechnique {
     /**
      * Decompress raw text.
      * @param compressed
+     * @param writer
      * @return
      */
     void deCompress(Reader compressed, Writer writer);
