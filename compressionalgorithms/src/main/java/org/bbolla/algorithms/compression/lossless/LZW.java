@@ -1,5 +1,8 @@
 package org.bbolla.algorithms.compression.lossless;
 
+import java.io.Reader;
+import java.io.Writer;
+
 /**
  *  LZW compression
  *  Uses a string table to assign code words to sequences.
@@ -8,12 +11,12 @@ package org.bbolla.algorithms.compression.lossless;
 public class LZW implements CompressionTechnique {
 
     @Override
-    public String compress(String uncompressed) {
-        return null;
+    public void compress(Reader uncompressed, Writer writer) {
+
     }
 
     @Override
-    public String deCompress(String compressed) {
-        return null;
+    public void deCompress(Reader compressed, Writer writer) {
+
     }
 }

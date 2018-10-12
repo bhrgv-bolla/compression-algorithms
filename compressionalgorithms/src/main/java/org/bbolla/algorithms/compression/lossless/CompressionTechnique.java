@@ -1,5 +1,8 @@
 package org.bbolla.algorithms.compression.lossless;
 
+import java.io.Reader;
+import java.io.Writer;
+
 /**
  * General interface to be used by any compression program
  */
@@ -10,12 +13,12 @@ public interface CompressionTechnique {
      * @param uncompressed
      * @return
      */
-    String compress(String uncompressed);
+    void compress(Reader uncompressed, Writer writer);
 
     /**
      * Decompress raw text.
      * @param compressed
      * @return
      */
-    String deCompress(String compressed);
+    void deCompress(Reader compressed, Writer writer);
 }
