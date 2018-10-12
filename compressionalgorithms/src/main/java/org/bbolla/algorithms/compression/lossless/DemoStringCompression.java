@@ -28,10 +28,10 @@ public class DemoStringCompression {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         Random rand = new Random();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100000; i++) {
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < 1000; j++) {
-                sb.append((char) rand.nextInt(100));
+                sb.append((char) rand.nextInt(1000));
             }
             pw.println(sb.toString());
         }
