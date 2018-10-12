@@ -20,9 +20,9 @@ public class CompressionTests {
                 CompressionTechnique instance = impl.newInstance();
                 //TODO write code for testing compress, decompress methods; compression ratios; and other stats like savings.
             } catch (InstantiationException e) {
-                throw new RuntimeException(impl.getSimpleName()+ " Need to have a default no args constructor");
+                throw new RuntimeException(impl.getSimpleName()+ " Need to have a default no args constructor", e);
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(impl.getSimpleName()+ " Constructor needs to be accessible");
+                throw new RuntimeException(impl.getSimpleName()+ " Constructor needs to be accessible", e);
             }
         }
     }
