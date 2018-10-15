@@ -2,7 +2,6 @@ package org.bbolla.algorithms.compression.lossless;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.LinkedHashMap;
