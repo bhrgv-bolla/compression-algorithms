@@ -25,10 +25,11 @@ public class CompressionTests {
                 CompressionTechnique instance = impl.newInstance();
                 //TODO write code for testing compress, decompress methods; compression ratios; and other stats like savings.
                 //TODO for different inputs log stats.
-                String input = "";
+                String input = "somestring somestring that needs compression needs compression ser";
                 Reader inputReader = new StringReader(input);
                 Writer compressedOutput = new StringWriter();
                 instance.compress(inputReader, compressedOutput);
+                log.info("Compressed output : {}", compressedOutput.toString());
                 Reader compressedInput = new StringReader(compressedOutput.toString());
                 Writer deCompressedOutput = new StringWriter();
                 instance.deCompress(compressedInput, deCompressedOutput);
@@ -39,6 +40,8 @@ public class CompressionTests {
                 throw new RuntimeException(impl.getSimpleName()+ " Need to have a default no args constructor", e);
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(impl.getSimpleName()+ " Constructor needs to be accessible", e);
+            } catch (CompressionException ex) {
+                throw new RuntimeException("Compression failed for : " + impl.getSimpleName(), ex);
             }
         }
     }

@@ -14,7 +14,7 @@ public interface CompressionTechnique {
      * @param writer
      * @return
      */
-    void compress(Reader uncompressed, Writer writer);
+    void compress(Reader uncompressed, Writer writer) throws CompressionException;
 
     /**
      * Decompress raw text.
@@ -22,5 +22,5 @@ public interface CompressionTechnique {
      * @param writer
      * @return
      */
-    void deCompress(Reader compressed, Writer writer);
+    void deCompress(Reader compressed, Writer writer) throws CompressionException;
 }
