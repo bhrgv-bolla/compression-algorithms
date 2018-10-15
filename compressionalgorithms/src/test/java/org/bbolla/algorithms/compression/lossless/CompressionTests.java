@@ -33,7 +33,7 @@ public class CompressionTests {
                 Reader compressedInput = new StringReader(compressedOutput.toString());
                 Writer deCompressedOutput = new StringWriter();
                 instance.deCompress(compressedInput, deCompressedOutput);
-
+                log.info("input : {}, Decompressed output : {}", input, deCompressedOutput.toString());
                 Assert.assertEquals("input length should be equal to decompressed length", input.getBytes().length, deCompressedOutput.toString().getBytes().length);
                 logStats(compressedOutput.toString(), deCompressedOutput.toString());
             } catch (InstantiationException e) {

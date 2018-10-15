@@ -67,6 +67,8 @@ public class LZW implements CompressionTechnique {
                 }
             }
             writer.write(stringTable.get(p)); //last remaining p value.
+            writer.flush();
+            writer.close();
         } catch (Exception ex) {
             throw new CompressionException("Exception occured while compressing", ex);
         }
@@ -84,11 +86,11 @@ public class LZW implements CompressionTechnique {
      * 7               S = translation of OLD
      * 8               S = S + C
      * 9       ELSE
-     * 10              S = translation of NEW
-     * 11       output S
-     * 12       C = first character of S
-     * 13       OLD + C to the string table
-     * 14       OLD = NEW
+     * 10               S = translation of NEW
+     * 11               output S
+     * 12               C = first character of S
+     * 13               OLD + C to the string table
+     * 14               OLD = NEW
      * 15   END WHILE
      * @param compressed
      * @param writer
@@ -104,17 +106,26 @@ public class LZW implements CompressionTechnique {
 
 
             //algorithm
-            int old = compressed.read();
+            int old = compressed.read(); //read code point. if code point already exists then translate using the string table.
+            String oldSeq = stringTable.get(old);
+            writer.write(oldSeq); //always write the first translation.
             int read;
+            String c = "";
             while((read = compressed.read()) != -1) {
+                String s;
                 if(!stringTable.containsKey(read)) {
-                    String s = stringTable.get(old); //translate old
+                    s = stringTable.get(old); //translate old
+                    s = s + c;
                 } else { //if that code word is not in the table? when would it not be in the table. When it is a sequence of strings number it wouldn't be there.
-
+                    s = stringTable.get(read); //translate new
                 }
+                writer.write(s);
+                c = "" + s.charAt(0);
+                stringTable.put(currentCodeIdx++, oldSeq + c);
+                oldSeq = stringTable.get(read);
             }
-
-            char p = (char) compressed.read();
+            writer.flush();
+            writer.close();
         } catch (Exception ex) {
             throw new CompressionException("Exception occured while de-compressing", ex);
         }
