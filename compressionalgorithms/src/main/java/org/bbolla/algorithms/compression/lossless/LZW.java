@@ -100,10 +100,20 @@ public class LZW implements CompressionTechnique {
         try {
             //Initialize the single characters table.
             int currentCodeIdx = 0;
-            Map<String, Integer> stringTable = new LinkedHashMap<>(sizeOfStringTable);
-            for(currentCodeIdx=0; currentCodeIdx<256; currentCodeIdx++) stringTable.put("" + (char) currentCodeIdx, currentCodeIdx);
+            Map<Integer, String> stringTable = new LinkedHashMap<>(sizeOfStringTable);
+            for(currentCodeIdx=0; currentCodeIdx<256; currentCodeIdx++) stringTable.put(currentCodeIdx, "" + (char) currentCodeIdx);
 
 
+            //algorithm
+            int old = compressed.read();
+            int read;
+            while((read = compressed.read()) != -1) {
+                if(!stringTable.containsKey(read)) {
+                    String s = stringTable.get(old); //translate old
+                } else { //if that code word is not in the table? when would it not be in the table. When it is a sequence of strings number it wouldn't be there.
+
+                }
+            }
 
             char p = (char) compressed.read();
         } catch (Exception ex) {
